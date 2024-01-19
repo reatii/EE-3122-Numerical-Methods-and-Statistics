@@ -1,0 +1,9 @@
+
+Name: sajol 
+Marks=100 
+
+Name: ohid 
+Marks=200 
+
+Name: ohid-sajol 
+Marks=300 
