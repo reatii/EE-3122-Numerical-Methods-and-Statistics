@@ -4,6 +4,8 @@
 #include<math.h>
 #include "ungrouped_data_parameters.h"
 
+#define GEOMETRIC_MEAN_OFFSET 100000 // This offset is used to avoid the problem of fractional numbers when calculating the geometric mean
+
 
 float arithmatic_mean(float* data_points, int number_of_data_points);
 float geometric_mean(float* data_points, int number_of_data_points);
@@ -35,19 +37,20 @@ float geometric_mean(float* data_points, int number_of_data_points){
     float sum = 0;
     int number_of_negative_data_points = 0;
     for(int i = 0; i < number_of_data_points; i++){
-        if(data_points[i] == 0){
+        if(data_points[i] == 0.00000){
             printf("Geometric mean is zero... beacause at least one of the data points is zero\n");
+            return 0;
         }
         if(data_points[i] < 0){
             number_of_negative_data_points++;
         }
-        sum += log(abs(data_points[i]));
+        sum += log(GEOMETRIC_MEAN_OFFSET * fabs(data_points[i]));
     }
     if(number_of_negative_data_points % 2 == 0){
-        return exp(sum / number_of_data_points);
+        return exp(sum / number_of_data_points) / GEOMETRIC_MEAN_OFFSET;
     }
     else{
-        return -exp(sum / number_of_data_points);
+        return -exp(sum / number_of_data_points - log(GEOMETRIC_MEAN_OFFSET));
     }
 }
 
@@ -104,7 +107,7 @@ float weighted_mean(float* data_points, int number_of_data_points){
 }
 
 // The following function prints the mean values
-void print_mean(mean mean_values){
+void print_mean(mean mean_values){ // mean_values is the struct containing all the mean values
     printf("Arithmatic mean: %f\n", mean_values.arithmatic_mean);
     printf("Geometric mean: %f\n", mean_values.geometric_mean);
     printf("Harmonic mean: %f\n", mean_values.harmonic_mean);

@@ -9,8 +9,6 @@
 #include "mean.h"
 #include "merge_sort.h"
 #include "ungrouped_data_to_grouped_data.h"
-#include "welcome_message.h"
-#include "printing_functions.h"
 
 int main(int argc, char** argv){
     // check if the user has provided the path to the text file as a command line argument... if not then ask
@@ -28,24 +26,7 @@ int main(int argc, char** argv){
         strncpy(file_path, argv[1], 256);
     }
 
-
-    // Reaading the data from the text file into a struct of type text_file_data(defined in load_ungrouped_data_from_txt_file_into_an_array.h)
-    // read_text_file() is defined in load_ungrouped_data_from_txt_file_into_an_array.h
     text_file_data data = read_text_file(file_path);
-    float* sorted_data_points = merge_sort(data.data_points, data.number_of_data_points);
-
-    // printing the welcome message which is defined in welcome_message.h
-    int choice = print_welcome_message();
-
-    // Interacting with the user based on the choice made by the user
-    while(choice != 0){
-        switch(choice){
-            case 1:
-                print_sorted_data(sorted_data_points, data.number_of_data_points);
-        }
-        choice = print_welcome_message();
-    }
-
 
     printf("number of data points: %d\n", data.number_of_data_points);
 

@@ -42,7 +42,7 @@ text_file_data read_text_file(char* file_path){
         fscanf(file_pointer, "%f", &data_from_file.data_points[(tracker.number_of_allocations - 1) * ALLOCATION_UNIT + tracker.current_position]);
         tracker.current_position++;
     }
-    data_from_file.number_of_data_points = (tracker.number_of_allocations - 1) * ALLOCATION_UNIT + tracker.current_position - 1;
+    data_from_file.number_of_data_points = (tracker.number_of_allocations - 1) * ALLOCATION_UNIT + tracker.current_position;
     fclose(file_pointer);
 
     // returning the struct containing the data points and the number of data points
