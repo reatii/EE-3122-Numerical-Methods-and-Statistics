@@ -30,7 +30,7 @@ grouped_data* ungrouped_to_grouped(float* sorted_data, int number_of_data_points
     grouped_data_struct->range = grouped_data_struct->maximum_data_value - grouped_data_struct->minimum_data_value;
 
     // The following code asks the user to enter the class size or the number of classes
-    printf("Enter one of the following(1 or 2): \n\t 1. Class size \n\t or \n\t 2. Number of classes\n\t Enter your choice: ");
+    printf("Enter one of the following(1 or 2): \n\t 1. Class size or, \n\t 2. Number of classes\n\t Enter your choice: ");
     int choice;
     scanf("%d", &choice);
     if(choice == 1){
@@ -61,26 +61,4 @@ grouped_data* ungrouped_to_grouped(float* sorted_data, int number_of_data_points
         class_number++;
     }
     return grouped_data_struct;
-}
-
-// The following function prints the grouped data
-void print_grouped_data(grouped_data* grouped_data_struct){
-    printf("Minimum data value: %f\n", grouped_data_struct->minimum_data_value);
-    printf("Maximum data value: %f\n", grouped_data_struct->maximum_data_value);
-    printf("Range: %f\n", grouped_data_struct->range);
-    printf("Class size: %f\n", grouped_data_struct->class_size);
-    printf("Number of classes: %d\n", grouped_data_struct->number_of_classes);
-    printf("Class array: \n");
-        printf("+--------------+-------------+-------------+-------------+\n");
-        printf("| Class number | lower limit | upper limit | frequency   |\n");
-        printf("|--------------+-------------+-------------+-------------|\n");
-    for(int i = 0; i < grouped_data_struct->number_of_classes; i++){
-        printf("|     %-9d|", i+1);
-        printf("   %-10f|", grouped_data_struct->minimum_data_value + i * grouped_data_struct->class_size);
-        printf("   %-10f|", grouped_data_struct->minimum_data_value + (i+1) * grouped_data_struct->class_size);
-        printf("   %-10d|\n", grouped_data_struct->class_array[i]);
-        printf("+--------------+-------------+-------------+-------------+\n");
-    }
-        printf("|     TOTAL    |      ~      |      ~      |   %-10d|\n", grouped_data_struct->number_of_data_points);
-        printf("+--------------+-------------+-------------+-------------+\n");
 }

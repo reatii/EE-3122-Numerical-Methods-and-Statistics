@@ -19,7 +19,6 @@ mean calculate_mean(float* data_points, int number_of_data_points){
     mean_values.arithmatic_mean = arithmatic_mean(data_points, number_of_data_points);
     mean_values.geometric_mean = geometric_mean(data_points, number_of_data_points);
     mean_values.harmonic_mean = harmonic_mean(data_points, number_of_data_points);
-    mean_values.weighted_mean = weighted_mean(data_points, number_of_data_points);
     return mean_values;
 }
 
@@ -70,10 +69,10 @@ float harmonic_mean(float* data_points, int number_of_data_points){
 // The following function calculates the weighted mean of the data points
 float weighted_mean(float* data_points, int number_of_data_points){
     printf("By default, the weights are assumed to be equal (meaning arithmatic mean = geometric mean)\n");
-    char choice;
+    char weight_choice = 'n';
     printf("Do you want to change the weights? (y/n): ");
-    scanf("%c", &choice);
-    if(choice == 'y'){
+    scanf(" %c", &weight_choice); // Added a space before %c to avoid the problem of skipping the input
+    if(weight_choice == 'y'){
         char weight_file_path[200];
         printf("\nEnter the path of the file containing the weights: ");
         scanf("%s", weight_file_path);
@@ -94,22 +93,15 @@ float weighted_mean(float* data_points, int number_of_data_points){
             weight_counter++;
         }
         fclose(weight_file_pointer);
-        if (weight_counter-1 != number_of_data_points){
-            printf("Number of weights: %d\n", weight_counter-1);
-            printf("Error: Number of weights is less than the number of data points\n");
-            exit(1);
+        if (weight_counter != number_of_data_points){
+            printf("Number of data points: %d\n", number_of_data_points);
+            printf("Number of weights: %d\n", weight_counter);
+            printf("Error: Number of weights is not equal to the number of data points\n");
+            return INFINITY;
         }
         return weighted_sum / (number_of_data_points * sum_of_weights);
     }
-    if(choice == 'n'){
+    if(weight_choice == 'n'){
         return arithmatic_mean(data_points, number_of_data_points);
     }
-}
-
-// The following function prints the mean values
-void print_mean(mean mean_values){ // mean_values is the struct containing all the mean values
-    printf("Arithmatic mean: %f\n", mean_values.arithmatic_mean);
-    printf("Geometric mean: %f\n", mean_values.geometric_mean);
-    printf("Harmonic mean: %f\n", mean_values.harmonic_mean);
-    printf("Weighted mean: %f\n", mean_values.weighted_mean);
 }

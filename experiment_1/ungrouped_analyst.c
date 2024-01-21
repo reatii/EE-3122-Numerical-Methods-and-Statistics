@@ -11,6 +11,10 @@
 #include "ungrouped_data_to_grouped_data.h"
 #include "welcome_message.h"
 #include "printing_functions.h"
+#include "dispersion_measures.h"
+#include "median.h"
+#include "mode.h"
+
 
 int main(int argc, char** argv){
     // check if the user has provided the path to the text file as a command line argument... if not then ask
@@ -36,33 +40,66 @@ int main(int argc, char** argv){
 
     // printing the welcome message which is defined in welcome_message.h
     int choice = print_welcome_message();
+    print_separator();
+
+    // variables
+    grouped_data* grouped_data_points = NULL;
+    mean mean_values = calculate_mean(data.data_points, data.number_of_data_points);
+    dispersion dispersion_values = calculate_dispersion(sorted_data_points, data.number_of_data_points);
+    float median_value = calculate_median(sorted_data_points, data.number_of_data_points);
+    float weighted_mean_value = INFINITY;
+    int* mode_array = calculate_mode(sorted_data_points, data.number_of_data_points);
 
     // Interacting with the user based on the choice made by the user
     while(choice != 0){
         switch(choice){
             case 1:
-                print_sorted_data(sorted_data_points, data.number_of_data_points);
+                print_sorted_data(sorted_data_points, data.number_of_data_points); // defined in printing_functions.h
+                break;
+            
+            case 2:
+                printf("Number of data points: %d\n", data.number_of_data_points);
+                break;
+
+            case 3:
+                if(grouped_data_points != NULL){
+                    free(grouped_data_points);
+                    grouped_data_points = ungrouped_to_grouped(sorted_data_points, data.number_of_data_points); // defined in ungrouped_data_to_grouped_data.h
+                }
+                else{
+                    grouped_data_points = ungrouped_to_grouped(sorted_data_points, data.number_of_data_points);
+                }
+                print_grouped_data(grouped_data_points);
+                break;
+
+            case 4:
+                print_mean(mean_values); // defined in printing_functions.h
+                break;
+
+            case 5:
+                if(weighted_mean_value == INFINITY){
+                    weighted_mean_value = weighted_mean(data.data_points, data.number_of_data_points); // defined in mean.h
+                }
+                printf("Weighted mean: %f\n", weighted_mean_value);
+                break;
+            
+            case 6:
+                print_dispersion(dispersion_values); // defined in printing_functions.h
+                break;
+
+            case 7:
+                printf("Median: %f\n", median_value);
+                break;
+
+            case 8:
+                print_mode(sorted_data_points, number_of_data_points, mode_array); // defined in printing_functions.h
+                break;
         }
+        print_separator();
         choice = print_welcome_message();
     }
 
-
-    printf("number of data points: %d\n", data.number_of_data_points);
-
-    // mean mean_values = calculate_mean(data.data_points, data.number_of_data_points);
-
-    // print_mean(mean_values);
-    
-    float* sorted_data_points = merge_sort(data.data_points, data.number_of_data_points);
-    // for(int i = 0; i < data.number_of_data_points; i++){
-    //     printf("%f \t", sorted_data_points[i]);
-    //     if(i%10==0){
-    //         printf("\n");
-    //     }
-    // }
-    printf("\n");
-
-    grouped_data* grouped_data_points = ungrouped_to_grouped(sorted_data_points, data.number_of_data_points);
-    print_grouped_data(grouped_data_points);
-    free(data.data_points);
+    if (choice == 0){
+        printf("\nThank you for using this program!\n");
+    }
 }

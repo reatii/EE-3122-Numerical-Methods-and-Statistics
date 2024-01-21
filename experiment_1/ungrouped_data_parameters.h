@@ -7,22 +7,30 @@ typedef struct {
     float arithmatic_mean;
     float geometric_mean;
     float harmonic_mean;
-    float weighted_mean;
 } mean;
 
 // struct containing all the dispersion values
 typedef struct {
     float range;
-    float interquartile_range;
     float variance;
+    float quartile_deviation;
     float standard_deviation;
     float coefficient_of_variation;
 } dispersion;
 
 // struct containing all the shape values
 typedef struct {
+    float moment_point;
+    float first_moment;
+    float second_moment;
+    float third_moment;
+    float fourth_moment;
+    float nth_moment;
+} moment;
+typedef struct {
     float skewness;
     float kurtosis;
+    moment moment_information;
 } shape;
 
 // struct containing all the position values
@@ -37,7 +45,6 @@ typedef struct {
     float covariance;
     float correlation_coefficient;
 } correlation;
-
 
 
 
