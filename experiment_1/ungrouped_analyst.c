@@ -14,6 +14,7 @@
 #include "dispersion_measures.h"
 #include "median.h"
 #include "mode.h"
+#include "shape_measures.h"
 
 
 int main(int argc, char** argv){
@@ -46,9 +47,9 @@ int main(int argc, char** argv){
     grouped_data* grouped_data_points = NULL;
     mean mean_values = calculate_mean(data.data_points, data.number_of_data_points);
     dispersion dispersion_values = calculate_dispersion(sorted_data_points, data.number_of_data_points);
+    shape shape_values = calculate_shape(sorted_data_points, data.number_of_data_points);
     float median_value = calculate_median(sorted_data_points, data.number_of_data_points);
     float weighted_mean_value = INFINITY;
-    int* mode_array = calculate_mode(sorted_data_points, data.number_of_data_points);
 
     // Interacting with the user based on the choice made by the user
     while(choice != 0){
@@ -92,7 +93,11 @@ int main(int argc, char** argv){
                 break;
 
             case 8:
-                print_mode(sorted_data_points, number_of_data_points, mode_array); // defined in printing_functions.h
+                printf("Mode: %f\n", calculate_mode(sorted_data_points, data.number_of_data_points));
+                break;
+            
+            case 9:
+                print_shape(shape_values); // defined in printing_functions.h
                 break;
         }
         print_separator();

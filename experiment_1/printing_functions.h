@@ -59,16 +59,16 @@ void print_dispersion(dispersion dispersion_values){
     printf("\tQuartile deviation       : %-12f\n", dispersion_values.quartile_deviation);
 }
 
-// print mode decisions
-void print_mode(float* sorted_array, int number_of_data_points, int* mode_array){
-    int max_element = mode_array[0];
-    int i = 0;
-    for(int i = 0; i < number_of_data_points; i++){
-        if(mode_array[i] > max_element){
-            max_element = mode_array[i];
-        }
-    }
 
+// print shape values
+void print_shape(shape shape_values){
+    printf("Shape values about mean: \n");
+    printf("\tSkewness      : %-12f\n", shape_values.skewness);
+    printf("\tKurtosis      : %-12f\n", shape_values.kurtosis);
+    printf("\tFirst moment  : %-12f\n", shape_values.moment_information.first_moment);
+    printf("\tSecond moment : %-12f\n", shape_values.moment_information.second_moment);
+    printf("\tThird moment  : %-12f\n", shape_values.moment_information.third_moment);
+    printf("\tFourth moment : %-12f\n", shape_values.moment_information.fourth_moment);
 }
 
 

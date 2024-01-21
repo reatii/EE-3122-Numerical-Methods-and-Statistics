@@ -16,6 +16,8 @@ int print_welcome_message(){
     printf("\t\t6. Calculate and print the dispersion measures (Range, Variance, Standard\n\t\t\tDeviation, Coefficient of Variation, Quartile Deviation)\n");
     printf("\t\t7. Calculate and print the  median\n");
     printf("\t\t8. Calculate and print the mode\n");
+    printf("\t\t9. Calculate and print the shape measures (moment about mean, skewness, kurtosis)\n");
+    printf("\t\t10. Calculate and print the moments about a point\n");
 
     printf("\t----------------------------------------\n");
     printf("\tTo exit the program enter 0\n\n");

@@ -20,12 +20,10 @@ typedef struct {
 
 // struct containing all the shape values
 typedef struct {
-    float moment_point;
     float first_moment;
     float second_moment;
     float third_moment;
     float fourth_moment;
-    float nth_moment;
 } moment;
 typedef struct {
     float skewness;
