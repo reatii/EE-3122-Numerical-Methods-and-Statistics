@@ -11,11 +11,11 @@ float arithmatic_mean(float* data_points, int number_of_data_points);
 float geometric_mean(float* data_points, int number_of_data_points);
 float harmonic_mean(float* data_points, int number_of_data_points);
 float weighted_mean(float* data_points, int number_of_data_points);
-void print_mean(mean mean_values);
+void print_mean(struct mean mean_values);
 
 // Calculate and return the struct containing all the mean values
-mean calculate_mean(float* data_points, int number_of_data_points){
-    mean mean_values;
+struct mean calculate_mean(float* data_points, int number_of_data_points){
+    struct mean mean_values;
     mean_values.arithmatic_mean = arithmatic_mean(data_points, number_of_data_points);
     mean_values.geometric_mean = geometric_mean(data_points, number_of_data_points);
     mean_values.harmonic_mean = harmonic_mean(data_points, number_of_data_points);

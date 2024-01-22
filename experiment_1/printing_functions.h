@@ -42,7 +42,7 @@ void print_grouped_data(grouped_data* grouped_data_struct){
 
 
 // The following function prints the mean values
-void print_mean(mean mean_values){ // mean_values is the struct containing all the mean values
+void print_mean(struct mean mean_values){ // mean_values is the struct containing all the mean values
     printf("Mean values: \n");
     printf("\tArithmatic mean: %-12f\n", mean_values.arithmatic_mean);
     printf("\tGeometric mean : %-12f\n", mean_values.geometric_mean);
@@ -50,7 +50,7 @@ void print_mean(mean mean_values){ // mean_values is the struct containing all t
 }
 
 // print dispersion values
-void print_dispersion(dispersion dispersion_values){
+void print_dispersion(struct dispersion dispersion_values){
     printf("Dispersion values: \n");
     printf("\tRange                    : %-12f\n", dispersion_values.range);
     printf("\tVariance                 : %-12f\n", dispersion_values.variance);
@@ -61,7 +61,7 @@ void print_dispersion(dispersion dispersion_values){
 
 
 // print shape values
-void print_shape(shape shape_values){
+void print_shape(struct shape shape_values){
     printf("Shape values about mean: \n");
     printf("\tSkewness      : %-12f\n", shape_values.skewness);
     printf("\tKurtosis      : %-12f\n", shape_values.kurtosis);

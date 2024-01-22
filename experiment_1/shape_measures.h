@@ -10,8 +10,8 @@ float moment_about_mean(float* sorted_data, int number_of_data_points, int order
 
 
 // function to calclulate the shape values
-shape calculate_shape(float* sorted_data, int number_of_data_points){
-    shape shape_values;
+struct shape calculate_shape(float* sorted_data, int number_of_data_points){
+    struct shape shape_values;
     shape_values.moment_information.first_moment = moment_about_mean(sorted_data, number_of_data_points, 1);
     shape_values.moment_information.second_moment = moment_about_mean(sorted_data, number_of_data_points, 2);
     shape_values.moment_information.third_moment = moment_about_mean(sorted_data, number_of_data_points, 3);

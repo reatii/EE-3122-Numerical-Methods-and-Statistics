@@ -11,8 +11,8 @@ float coefficient_of_variation(float* sorted_data, int number_of_data_points);
 float quartile_deviation(float* sorted_data, int number_of_data_points);
 
 
-dispersion calculate_dispersion(float* sorted_data, int number_of_data_points){
-    dispersion dispersion_values;
+struct dispersion calculate_dispersion(float* sorted_data, int number_of_data_points){
+    struct dispersion dispersion_values;
     dispersion_values.range = range_of_data(sorted_data, number_of_data_points);
     dispersion_values.variance = variance(sorted_data, number_of_data_points);
     dispersion_values.standard_deviation = sqrt(dispersion_values.variance);

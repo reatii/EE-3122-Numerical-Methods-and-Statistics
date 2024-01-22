@@ -3,57 +3,64 @@
 #pragma once
 
 // struct containing all the mean values
-typedef struct {
+struct mean {
     float arithmatic_mean;
     float geometric_mean;
     float harmonic_mean;
-} mean;
+};
 
 // struct containing all the dispersion values
-typedef struct {
+struct dispersion {
     float range;
     float variance;
     float quartile_deviation;
     float standard_deviation;
     float coefficient_of_variation;
-} dispersion;
+};
 
 // struct containing all the shape values
-typedef struct {
+struct moment {
     float first_moment;
     float second_moment;
     float third_moment;
     float fourth_moment;
-} moment;
-typedef struct {
+};
+struct shape {
     float skewness;
     float kurtosis;
-    moment moment_information;
-} shape;
+    struct moment moment_information;
+};
 
 // struct containing all the position values
-typedef struct {
+struct position{
     float percentile;
     float quartile;
     float decile;
-} position;
+};
 
 // struct containing all the correlation values
-typedef struct {
+struct correlation{
     float covariance;
     float correlation_coefficient;
-} correlation;
+};
 
+
+// struct for mode
+struct mode_information_holder{
+    float data_point;
+    int frequency;
+    struct mode_information_holder* next_mode_information_holder;
+};
 
 
 // Struct containing all the statistical properties
-typedef struct {
+struct statistical_properties{
     int n;                  // number of data points
-    mean mean;              // mean values
+    struct mean mean;              // mean values
     float median;           // median value
     float mode;             // mode value
-    dispersion dispersion;  // dispersion values
-    shape shape;            // shape values
-    position position;      // position values
-    correlation correlation;// correlation values
-} statistical_properties;
+    struct dispersion dispersion;  // dispersion values
+    struct shape shape;            // shape values
+    struct position position;      // position values
+    struct correlation correlation;// correlation values
+};

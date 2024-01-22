@@ -45,9 +45,9 @@ int main(int argc, char** argv){
 
     // variables
     grouped_data* grouped_data_points = NULL;
-    mean mean_values = calculate_mean(data.data_points, data.number_of_data_points);
-    dispersion dispersion_values = calculate_dispersion(sorted_data_points, data.number_of_data_points);
-    shape shape_values = calculate_shape(sorted_data_points, data.number_of_data_points);
+    struct mean mean_values = calculate_mean(data.data_points, data.number_of_data_points);
+    struct dispersion dispersion_values = calculate_dispersion(sorted_data_points, data.number_of_data_points);
+    struct shape shape_values = calculate_shape(sorted_data_points, data.number_of_data_points);
     float median_value = calculate_median(sorted_data_points, data.number_of_data_points);
     float weighted_mean_value = INFINITY;
 
@@ -93,7 +93,8 @@ int main(int argc, char** argv){
                 break;
 
             case 8:
-                printf("Mode: %f\n", calculate_mode(sorted_data_points, data.number_of_data_points));
+                struct mode_information_holder* first_holder = calculate_mode_linked_list(sorted_data_points, data.number_of_data_points); // defined in mode.h
+                print_mode_information(first_holder);
                 break;
             
             case 9:
